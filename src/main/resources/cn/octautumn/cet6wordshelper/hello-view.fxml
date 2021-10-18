@@ -4,37 +4,25 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cn.octautumn.cet6wordshelper.HelloController">
+<VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.octautumn.cet6wordshelper.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="开始">
-            <items>
-              <MenuItem mnemonicParsing="false" text="关闭" />
-                  <MenuItem mnemonicParsing="false" text="CET6单词表设置" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="帮助">
-            <items>
-              <MenuItem mnemonicParsing="false" text="关于" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <VBox alignment="CENTER" prefHeight="199.0" prefWidth="120.0">
+      <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
+      <GridPane alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="94.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="107.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-         
-             <Label fx:id="welcomeText" />
-             <Button onAction="#onHelloButtonClick" text="Hello!" />
+            <Label text="加载词汇表..." />
+            <Label fx:id="progressLabel" text="0000/0000" GridPane.columnIndex="1" />
          </children>
-      </VBox>
+      </GridPane>
    </children>
 </VBox>

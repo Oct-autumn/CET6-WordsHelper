@@ -2,15 +2,16 @@ package cn.octautumn.cet6wordshelper;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 
 public class HelloController
 {
     @FXML
-    private Label welcomeText;
+    private Label progressLabel;
+    private ProgressBar progressBar;
 
-    @FXML
-    protected void onHelloButtonClick()
+    public void setProgress(int progress)
     {
-        welcomeText.setText("Welcome to JavaFX Application!");
+
     }
 }
