@@ -10,8 +10,11 @@ module cn.octautumn.cet6wordshelper {
 
     opens cn.octautumn.cet6wordshelper to javafx.fxml;
     exports cn.octautumn.cet6wordshelper;
-    exports cn.octautumn.cet6wordshelper.ShowWindow;
-    opens cn.octautumn.cet6wordshelper.ShowWindow to javafx.fxml;
+    exports cn.octautumn.cet6wordshelper.Scenes;
+    exports cn.octautumn.cet6wordshelper.DictionaryClass;
+    opens cn.octautumn.cet6wordshelper.Scenes to javafx.fxml;
     exports cn.octautumn.cet6wordshelper.Controllers;
     opens cn.octautumn.cet6wordshelper.Controllers to javafx.fxml;
+    exports cn.octautumn.cet6wordshelper.Scenes.Controller;
+    opens cn.octautumn.cet6wordshelper.Scenes.Controller to javafx.fxml;
 }

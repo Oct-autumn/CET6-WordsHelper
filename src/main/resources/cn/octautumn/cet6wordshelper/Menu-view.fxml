@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="rootBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.octautumn.cet6wordshelper.Controllers.MenuController">
    <children>
-      <Label text="单词记忆助手" textAlignment="CENTER" />
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="开始">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Quit" text="退出" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="关于">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#ShowGPL" text="GPL证书" />
+                  <MenuItem mnemonicParsing="false" text="关于" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <VBox alignment="CENTER">
+         <children>
+            <Label text="单词记忆助手" textAlignment="CENTER" textFill="#00c684">
+               <padding>
+                  <Insets bottom="40.0" top="40.0" />
+               </padding>
+               <font>
+                  <Font name="SimHei" size="24.0" />
+               </font>
+            </Label>
+            <GridPane vgap="30.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="Mode1Button" mnemonicParsing="false" onAction="#onMode1ButtonClicked" prefWidth="130.0" text="英译汉挑战">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Mode2Button" mnemonicParsing="false" onAction="#onMode2ButtonClicked" prefWidth="130.0" text="汉译英挑战" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="WordsReviewButton" mnemonicParsing="false" onAction="#onWordsReviewButtonClicked" prefWidth="130.0" text="单词复习" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
    </children>
 </VBox>

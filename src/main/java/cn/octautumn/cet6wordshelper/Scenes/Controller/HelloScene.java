@@ -1,7 +1,8 @@
-package cn.octautumn.cet6wordshelper.ShowWindow;
+package cn.octautumn.cet6wordshelper.Scenes.Controller;
 
 import cn.octautumn.cet6wordshelper.DictionaryClass.DictOperation;
 import cn.octautumn.cet6wordshelper.MainApplication;
+import cn.octautumn.cet6wordshelper.Scenes.SceneShowingController;
 import com.fasterxml.jackson.databind.JsonNode;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -17,23 +18,24 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Optional;
 
-public class ShowHelloWindow extends ShowWindow
+public class HelloScene extends SceneShowingController
 {
     public static File wordListJsonFile;
     public static InputStream inputJsonStream = null;
 
-    public ShowHelloWindow(URL resource) throws Exception
+    public HelloScene(URL sceneResource)
     {
-        super(resource);
+        super(sceneResource);
     }
 
     @Override
-    void onLoad(Stage upStage) throws Exception
+    protected void beforeShow(Stage thisStage) throws Exception
     {
+
     }
 
     @Override
-    void onRunning(Stage upStage) throws Exception
+    protected void afterShow(Stage thisStage) throws Exception
     {
         //加载词库
         final String JsonFilePath = WorkingDir + fileSeparator + "cn/octautumn/cet6wordshelper/CET6-Words.json"; //常量 词库文件路径
@@ -60,7 +62,7 @@ public class ShowHelloWindow extends ShowWindow
                     fileChooser.getExtensionFilters().addAll(
                             new FileChooser.ExtensionFilter("Json文件", "*.json"),
                             new FileChooser.ExtensionFilter("All Files", "*.*"));
-                    wordListJsonFile = fileChooser.showOpenDialog(upStage);
+                    wordListJsonFile = fileChooser.showOpenDialog(thisStage);
                     if (wordListJsonFile != null && wordListJsonFile.exists())
                         inputJsonStream = new FileInputStream(wordListJsonFile);
                     else
@@ -97,7 +99,7 @@ public class ShowHelloWindow extends ShowWindow
                 fileChooser.getExtensionFilters().addAll(
                         new FileChooser.ExtensionFilter("Json文件", "*.json"),
                         new FileChooser.ExtensionFilter("All Files", "*.*"));
-                wordListJsonFile = fileChooser.showOpenDialog(upStage);
+                wordListJsonFile = fileChooser.showOpenDialog(thisStage);
                 if (wordListJsonFile != null && wordListJsonFile.exists())
                     inputJsonStream = new FileInputStream(wordListJsonFile);
                 else
@@ -114,8 +116,6 @@ public class ShowHelloWindow extends ShowWindow
         DictOperation.ConstructDictionary(WordListJson);
         inputJsonStream.close();
 
-        scene.getWindow().hide();
-
-        new ShowMenuWindow(MainApplication.class.getResource("Menu-view.fxml"));
+        thisStage.close();
     }
 }
