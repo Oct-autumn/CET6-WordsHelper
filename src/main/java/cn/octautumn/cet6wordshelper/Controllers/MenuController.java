@@ -16,7 +16,7 @@ public class MenuController
 
     public void Quit(ActionEvent actionEvent)
     {
-        Event.fireEvent(rootBox.getScene().getWindow(), new WindowEvent(rootBox.getScene().getWindow(), WindowEvent.WINDOW_HIDING));
+        Event.fireEvent(rootBox.getScene().getWindow(), new WindowEvent(rootBox.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     public void ShowGPL(ActionEvent actionEvent)
