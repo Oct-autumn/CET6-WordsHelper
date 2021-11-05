@@ -24,6 +24,7 @@ public class MenuController
         ButtonType OkButtonType = new ButtonType("确定", ButtonBar.ButtonData.FINISH);
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("GPL证书");
+        dialog.setResizable(true);
         dialog.setContentText("""
                             English WordsHelper
                             Copyright (C) 2021  Oct_Autumn
@@ -39,9 +40,7 @@ public class MenuController
                             GNU General Public License for more details.
 
                             You should have received a copy of the GNU General Public License
-                            along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-                            Contact me by E-mail: lljkiff@163.com""");
+                            along with this program. If not, see <https://www.gnu.org/licenses/>.""");
         dialog.getDialogPane().getButtonTypes().add(OkButtonType);
         dialog.showAndWait();
     }
@@ -70,5 +69,12 @@ public class MenuController
 
     public void onWordsReviewButtonClicked(ActionEvent actionEvent)
     {
+        try
+        {
+            MainApplication.mainWindowController.showScene("Review");
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

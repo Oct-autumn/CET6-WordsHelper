@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -18,7 +20,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ProgressBar fx:id="TimerBar" prefWidth="300.0" progress="0.0" GridPane.columnIndex="1" />
+            <ProgressBar fx:id="TimerBar" prefWidth="300.0" progress="1.0" stylesheets="@css/TimerBar.css" GridPane.columnIndex="1" />
             <Label text="计时器">
                <font>
                   <Font size="18.0" />
@@ -54,7 +56,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="TipWordsLabel" text="说明" wrapText="true" GridPane.rowIndex="1">
+            <Label fx:id="TipLabel" text="说明" wrapText="true" GridPane.rowIndex="1">
                <font>
                   <Font size="20.0" />
                </font>
@@ -81,7 +83,7 @@
             <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="Ans1" mnemonicParsing="false" prefWidth="400.0" text="选项A">
+            <Button fx:id="Ans1" mnemonicParsing="false" onAction="#DebugAct" prefWidth="400.0" text="选项A">
                <font>
                   <Font size="18.0" />
                </font>

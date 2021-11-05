@@ -1,11 +1,8 @@
 package cn.octautumn.cet6wordshelper;
 
 import cn.octautumn.cet6wordshelper.DictionaryClass.Dictionary;
-import cn.octautumn.cet6wordshelper.Scenes.Controller.ShowMode1Window;
-import cn.octautumn.cet6wordshelper.Scenes.Controller.ShowMode2Window;
+import cn.octautumn.cet6wordshelper.Scenes.Controller.*;
 import cn.octautumn.cet6wordshelper.Scenes.StageController;
-import cn.octautumn.cet6wordshelper.Scenes.Controller.HelloScene;
-import cn.octautumn.cet6wordshelper.Scenes.Controller.MainWindow_MenuScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -36,7 +33,8 @@ public class MainApplication extends Application
         mainWindowController = new StageController(subStage)
                 .addScene("Menu", new MainWindow_MenuScene(MainApplication.class.getResource("Menu-view.fxml")))
                 .addScene("Mode1", new ShowMode1Window(MainApplication.class.getResource("Challenge1-view.fxml")))
-                .addScene("Mode2", new ShowMode2Window(MainApplication.class.getResource("Challenge2-view.fxml")));
+                .addScene("Mode2", new ShowMode2Window(MainApplication.class.getResource("Challenge2-view.fxml")))
+                .addScene("Review", new ShowReviewWindow(MainApplication.class.getResource("WordReview-view.fxml")));
 
         mainWindowController.showScene("Menu");
 

@@ -13,11 +13,6 @@ public class HelloController implements Initializable
     @FXML
     public Label progressLabel;
 
-    public void DebugEventHandler(ActionEvent actionEvent)
-    {
-        System.out.println("Clicked.");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {

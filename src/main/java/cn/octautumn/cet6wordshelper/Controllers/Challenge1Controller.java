@@ -1,12 +1,16 @@
 package cn.octautumn.cet6wordshelper.Controllers;
 
 import cn.octautumn.cet6wordshelper.MainApplication;
+import javafx.css.Style;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 
 public class Challenge1Controller
@@ -15,7 +19,7 @@ public class Challenge1Controller
     public ProgressBar TimerBar;
     public Label TimerLabel;
     public Label WordLabel;
-    public Label TipWordsLabel;
+    public Label TipLabel;
     public Button Ans1;
     public Button Ans2;
     public Button Ans3;
@@ -31,5 +35,9 @@ public class Challenge1Controller
         {
             e.printStackTrace();
         }
+    }
+
+    public void DebugAct(ActionEvent actionEvent)
+    {
     }
 }
