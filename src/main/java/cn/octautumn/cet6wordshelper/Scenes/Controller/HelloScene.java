@@ -38,7 +38,7 @@ public class HelloScene extends SceneShowingController
     protected void afterShow(Stage thisStage) throws Exception
     {
         //加载词库
-        final String JsonFilePath = WorkingDir + fileSeparator + "cn/octautumn/cet6wordshelper/CET6-Words.json"; //常量 词库文件路径
+        final String JsonFilePath = WorkingDir + fileSeparator + "CET6-Words.json"; //常量 词库文件路径
         wordListJsonFile = new File(JsonFilePath);
         if (!(wordListJsonFile).exists())
         {

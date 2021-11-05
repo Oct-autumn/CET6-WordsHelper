@@ -29,14 +29,17 @@ public abstract class SceneShowingController
 
     public void showIn(Stage thisStage) throws Exception
     {
+        //前处理
         beforeShow(thisStage);
 
+        //展示界面
         thisStage.setScene(thisScene);
 
         //坐标居中
         thisStage.setX((Screen.getPrimary().getBounds().getMaxX() - this.thisScene.getWidth()) / 2);
         thisStage.setY((Screen.getPrimary().getBounds().getMaxY() - this.thisScene.getHeight()) / 2);
 
+        //后处理
         afterShow(thisStage);
     }
 

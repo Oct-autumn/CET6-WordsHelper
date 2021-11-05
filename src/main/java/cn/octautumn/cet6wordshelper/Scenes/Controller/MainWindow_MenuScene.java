@@ -102,10 +102,16 @@ public class MainWindow_MenuScene extends SceneShowingController
                         }
                     }
                 }
+
+                outputWriter_Familiar.close();
+                outputWriter_notFamiliar.close();
+
             } catch (Exception e)
             {
                 e.printStackTrace();
             }
+
+            System.out.println("Quited.");
         });
     }
 

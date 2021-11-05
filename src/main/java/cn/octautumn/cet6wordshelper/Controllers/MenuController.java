@@ -3,6 +3,7 @@ package cn.octautumn.cet6wordshelper.Controllers;
 import cn.octautumn.cet6wordshelper.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -13,6 +14,9 @@ public class MenuController
 {
 
     public VBox rootBox;
+    public Button Mode1Button;
+    public Button Mode2Button;
+    public Button WordsReviewButton;
 
     public void Quit(ActionEvent actionEvent)
     {

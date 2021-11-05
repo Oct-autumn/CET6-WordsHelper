@@ -26,17 +26,6 @@ public class Challenge1Controller
     public Button Ans4;
     public Button ExitButton;
 
-    public void ExitChallenge(ActionEvent actionEvent)
-    {
-        try
-        {
-            MainApplication.mainWindowController.backToMainScene();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
     public void DebugAct(ActionEvent actionEvent)
     {
     }

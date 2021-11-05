@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 <VBox fx:id="rootBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.octautumn.cet6wordshelper.Controllers.Challenge1Controller">
    <children>
       <GridPane style="-fx-background-color: #AAAAAA;">
@@ -105,7 +101,7 @@
             </Button>
          </children>
       </GridPane>
-      <Button fx:id="ExitButton" mnemonicParsing="false" onAction="#ExitChallenge" text="退出挑战">
+      <Button fx:id="ExitButton" mnemonicParsing="false" text="退出挑战">
          <font>
             <Font size="14.0" />
          </font>
