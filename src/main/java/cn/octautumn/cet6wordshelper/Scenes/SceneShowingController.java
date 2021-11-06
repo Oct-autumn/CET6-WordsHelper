@@ -35,9 +35,8 @@ public abstract class SceneShowingController
         //展示界面
         thisStage.setScene(thisScene);
 
-        //坐标居中
-        thisStage.setX((Screen.getPrimary().getBounds().getMaxX() - this.thisScene.getWidth()) / 2);
-        thisStage.setY((Screen.getPrimary().getBounds().getMaxY() - this.thisScene.getHeight()) / 2);
+        //居中显示
+        thisStage.centerOnScreen();
 
         //后处理
         afterShow(thisStage);

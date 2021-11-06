@@ -28,7 +28,6 @@ public class MainApplication extends Application
         Stage subStage = new Stage();
         subStage.setTitle("CET6 单词助手");
         subStage.setResizable(false);
-        subStage.show();
 
         mainWindowController = new StageController(subStage)
                 .addScene("Menu", new MainWindow_MenuScene(MainApplication.class.getResource("Menu-view.fxml")))
@@ -37,13 +36,8 @@ public class MainApplication extends Application
                 .addScene("Review", new ShowReviewWindow(MainApplication.class.getResource("WordReview-view.fxml")));
 
         mainWindowController.showScene("Menu");
+        subStage.show();
 
-
-    }
-
-    public static void main(String[] args)
-    {
-        launch();
 
     }
 }

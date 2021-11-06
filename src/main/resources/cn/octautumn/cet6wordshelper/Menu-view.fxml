@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+
 <VBox fx:id="rootBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.octautumn.cet6wordshelper.Controllers.MenuController">
    <children>
       <MenuBar>
@@ -16,7 +20,7 @@
           <Menu mnemonicParsing="false" text="关于">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#ShowGPL" text="GPL证书" />
-                  <MenuItem mnemonicParsing="false" text="关于" />
+                  <MenuItem mnemonicParsing="false" onAction="#ShowAboutDialog" text="关于" />
             </items>
           </Menu>
         </menus>

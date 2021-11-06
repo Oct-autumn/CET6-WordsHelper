@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 import static cn.octautumn.cet6wordshelper.MainApplication.*;
@@ -26,7 +27,6 @@ public class MainWindow_MenuScene extends SceneShowingController
     protected void beforeShow(Stage upStage) throws Exception
     {
         upStage.setOnCloseRequest(windowEvent -> {
-            System.out.println("Quit");
             try
             {
                 final String JsonFilePath = WorkingDir + fileSeparator + "CET6-Words.json"; //常量 词库文件路径
@@ -46,7 +46,7 @@ public class MainWindow_MenuScene extends SceneShowingController
                     }
                 }
 
-                BufferedWriter outputWriter = new BufferedWriter(new FileWriter(OutputFile));
+                BufferedWriter outputWriter = new BufferedWriter(new FileWriter(OutputFile, StandardCharsets.UTF_8));
 
                 JsonMapper mapper = new JsonMapper();
 
@@ -111,7 +111,7 @@ public class MainWindow_MenuScene extends SceneShowingController
                 e.printStackTrace();
             }
 
-            System.out.println("Quited.");
+            System.exit(0);
         });
     }
 

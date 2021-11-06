@@ -1,14 +1,16 @@
 package cn.octautumn.cet6wordshelper.Controllers;
 
 import cn.octautumn.cet6wordshelper.MainApplication;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.stage.WindowEvent;
+import javafx.stage.*;
+
+import java.io.IOException;
 
 public class MenuController
 {
@@ -23,13 +25,41 @@ public class MenuController
         Event.fireEvent(rootBox.getScene().getWindow(), new WindowEvent(rootBox.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
+    public void ShowAboutDialog(ActionEvent actionEvent)
+    {
+        Stage aboutWindow = new Stage(StageStyle.DECORATED);
+        aboutWindow.initOwner(rootBox.getScene().getWindow());
+        aboutWindow.initModality(Modality.WINDOW_MODAL);
+        aboutWindow.setTitle("关于");
+        try
+        {
+            aboutWindow.setScene(new Scene(new FXMLLoader(MainApplication.class.getResource("About-view.fxml")).load()));
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        aboutWindow.sizeToScene();
+        aboutWindow.setResizable(false);
+        aboutWindow.showAndWait();
+    }
+
     public void ShowGPL(ActionEvent actionEvent)
     {
-        ButtonType OkButtonType = new ButtonType("确定", ButtonBar.ButtonData.FINISH);
-        Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("GPL证书");
-        dialog.setResizable(true);
-        dialog.setContentText("""
+        Stage GPLWindow = new Stage(StageStyle.DECORATED);
+        GPLWindow.initOwner(rootBox.getScene().getWindow());
+        GPLWindow.initModality(Modality.WINDOW_MODAL);
+        GPLWindow.setTitle("GPL证书");
+        try
+        {
+            GPLWindow.setScene(new Scene(new FXMLLoader(MainApplication.class.getResource("GPL-view.fxml")).load()));
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        GPLWindow.sizeToScene();
+        Platform.runLater(()->
+        {
+            ((Label)GPLWindow.getScene().lookup("#GPLInfo")).setText("""
                             English WordsHelper
                             Copyright (C) 2021  Oct_Autumn
 
@@ -45,8 +75,9 @@ public class MenuController
 
                             You should have received a copy of the GNU General Public License
                             along with this program. If not, see <https://www.gnu.org/licenses/>.""");
-        dialog.getDialogPane().getButtonTypes().add(OkButtonType);
-        dialog.showAndWait();
+        });
+        GPLWindow.setResizable(false);
+        GPLWindow.showAndWait();
     }
 
     public void onMode1ButtonClicked(ActionEvent actionEvent)

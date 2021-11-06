@@ -1,5 +1,6 @@
 package cn.octautumn.cet6wordshelper.Scenes.Controller;
 
+import cn.octautumn.cet6wordshelper.OnRunning.RunReview;
 import cn.octautumn.cet6wordshelper.Scenes.SceneShowingController;
 import javafx.stage.Stage;
 
@@ -22,6 +23,6 @@ public class ShowReviewWindow extends SceneShowingController
     @Override
     protected void afterShow(Stage upStage) throws Exception
     {
-
+        new RunReview(getThisScene()).ShowReview();
     }
 }

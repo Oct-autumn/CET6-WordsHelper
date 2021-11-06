@@ -164,11 +164,11 @@ public class RunMode1 extends RunMode
                     if (errorCount == 2)
                     {
                         RunningStatus = 3;
-                        setWordLabelText("错误太多啦! 再接再厉吧. ");
-                        setTipLabelText("");
                         cleanAllSelection();
                         setDisableAllSelection(true);
                         Thread.sleep(5000);
+                        setWordLabelText("错误太多啦! 再接再厉吧.");
+                        setTipLabelText("");
                         Platform.runLater(()-> ExitButton.requestFocus());
                         return;
                     }

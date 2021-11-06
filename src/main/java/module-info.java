@@ -17,4 +17,5 @@ module cn.octautumn.cet6wordshelper {
     opens cn.octautumn.cet6wordshelper.Controllers to javafx.fxml;
     exports cn.octautumn.cet6wordshelper.Scenes.Controller;
     opens cn.octautumn.cet6wordshelper.Scenes.Controller to javafx.fxml;
+    opens cn.octautumn.cet6wordshelper.OnRunning to javafx.base;
 }

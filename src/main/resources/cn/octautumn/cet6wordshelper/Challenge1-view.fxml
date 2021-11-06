@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <VBox fx:id="rootBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.octautumn.cet6wordshelper.Controllers.Challenge1Controller">
    <children>
       <GridPane style="-fx-background-color: #AAAAAA;">
@@ -62,7 +64,7 @@
             <Insets left="25.0" right="25.0" top="20.0" />
          </padding>
       </GridPane>
-      <GridPane vgap="5.0">
+      <GridPane fx:id="AnswerSelections" vgap="5.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>

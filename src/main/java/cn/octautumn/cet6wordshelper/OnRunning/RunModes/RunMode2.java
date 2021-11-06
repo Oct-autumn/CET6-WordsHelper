@@ -45,7 +45,7 @@ public class RunMode2 extends RunMode
     public void run()
     {
         new Thread(this.timer).start();
-        Platform.runLater(()->Answer.setDisable(false));
+        Platform.runLater(() -> Answer.setDisable(false));
 
         AtomicBoolean isCorrect = new AtomicBoolean(false);
         int errorCount = 0;
@@ -66,7 +66,7 @@ public class RunMode2 extends RunMode
             String correctSpell = correctAnswer.getEnS();
             System.out.println(correctSpell);
 
-            setTipLabelText("根据提示在下面拼写该单词： ");
+            setTipLabelText("根据提示在下面拼写该单词：（按回车键来提交答案）");
             cleanAnswerText();
 
             int tipSize;   //智能提示，减少单词过短时提示过多[Doge]
@@ -79,14 +79,14 @@ public class RunMode2 extends RunMode
             else
                 tipSize = getRandom(1, 2);
 
-            char[] tipWord = "*".repeat(correctSpell.length()).toCharArray();
+            char[] tipWord = "_".repeat(correctSpell.length()).toCharArray();
 
             for (int i = 0; i < tipSize; i++)
             {
                 while (true)
                 {
                     randID = getRandom(0, correctSpell.length() - 1);
-                    if (tipWord[randID] != '*')
+                    if (tipWord[randID] != '_')
                         continue;
                     tipWord[randID] = correctSpell.charAt(randID);
                     break;
@@ -98,7 +98,7 @@ public class RunMode2 extends RunMode
             StringBuilder wordTipWord = new StringBuilder();
             for (ChTrans it : chTrans)
             {
-                wordTipWord.append(it.getPos()).append(' ');
+                wordTipWord.append(it.getPos()).append(". ");
                 ArrayList<String> mean = it.getMean();
                 for (int i = 0; i < mean.size() - 2; i++)
                 {
@@ -159,7 +159,7 @@ public class RunMode2 extends RunMode
             {
                 errorCount++;
                 setTipLabelText("对不起，回答错误. 你已答错" + errorCount + "题 \n" +
-                                "正确答案是：" + correctSpell + " ");
+                        "正确答案是：" + correctSpell + " ");
                 switch (MainApplication.mainDict.getData().get(selWordId).getFamiliar())
                 {
                     case haveNotAppeared, passInMode2, N_passInMode2 -> MainApplication.mainDict.getData().get(selWordId).setFamiliar(Familiar.notFamiliar);
@@ -244,16 +244,13 @@ public class RunMode2 extends RunMode
         @Override
         public void run()
         {
-            Answer.setOnKeyReleased(KeyEvent ->
+            Answer.setOnAction(KeyEvent ->
             {
-                if (KeyEvent.getCode().getName().equals("Enter"))
+                synchronized (upClass)
                 {
-                    synchronized (upClass)
-                    {
-                        flag.set(Answer.getText().equalsIgnoreCase(CA));
-                        RunningStatus = 0;
-                        upClass.notify();
-                    }
+                    flag.set(Answer.getText().equalsIgnoreCase(CA));
+                    RunningStatus = 0;
+                    upClass.notify();
                 }
             });
         }
