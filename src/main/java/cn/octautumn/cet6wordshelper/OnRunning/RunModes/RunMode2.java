@@ -14,6 +14,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -137,7 +138,7 @@ public class RunMode2 extends RunMode
 
             if (isCorrect.get())
             {
-                setTipLabelText("恭喜你，回答正确. 你已答对" + (wordCount - errorCount + 1) + "题 ");
+                setTipLabelText("恭喜你，回答正确. 你已答对" + (wordCount - errorCount + 1) + "题 ", Color.FORESTGREEN);
                 switch (MainApplication.mainDict.getData().get(selWordId).getFamiliar())
                 {
                     case haveNotAppeared -> MainApplication.mainDict.getData().get(selWordId).setFamiliar(Familiar.passInMode2);
@@ -148,7 +149,10 @@ public class RunMode2 extends RunMode
                 try
                 {
                     cleanAnswerText();
-                    Thread.sleep(1000);
+                    synchronized (this)
+                    {
+                        wait(1000);
+                    }
                     cleanAnswerText();
                 } catch (InterruptedException e)
                 {
@@ -159,7 +163,7 @@ public class RunMode2 extends RunMode
             {
                 errorCount++;
                 setTipLabelText("对不起，回答错误. 你已答错" + errorCount + "题 \n" +
-                        "正确答案是：" + correctSpell + " ");
+                        "正确答案是：" + correctSpell + " ", Color.INDIANRED);
                 switch (MainApplication.mainDict.getData().get(selWordId).getFamiliar())
                 {
                     case haveNotAppeared, passInMode2, N_passInMode2 -> MainApplication.mainDict.getData().get(selWordId).setFamiliar(Familiar.notFamiliar);
@@ -170,14 +174,21 @@ public class RunMode2 extends RunMode
                     if (errorCount == 2)
                     {
                         RunningStatus = 3;
-                        Thread.sleep(5000);
-                        setWordLabelText("错误太多啦! 再接再厉吧.");
                         cleanAnswerTextAndDisable();
                         setWordTipLabelText("");
+                        synchronized (this)
+                        {
+                            wait(5000);
+                        }
+                        setWordLabelText("错误太多啦! 再接再厉吧.");
                         setTipLabelText("");
                         return;
                     }
-                    Thread.sleep(5000);
+                    cleanAnswerText();
+                    synchronized (this)
+                    {
+                        wait(5000);
+                    }
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();
@@ -201,9 +212,20 @@ public class RunMode2 extends RunMode
         Platform.runLater(() -> WordTipLabel.setText(word));
     }
 
+    private void setTipLabelText(String tip, Color color)
+    {
+        Platform.runLater(() -> {
+            TipLabel.setTextFill(color);
+            TipLabel.setText(tip);
+        });
+    }
+
     private void setTipLabelText(String tip)
     {
-        Platform.runLater(() -> TipLabel.setText(tip));
+        Platform.runLater(() -> {
+            TipLabel.setTextFill(Color.BLACK);
+            TipLabel.setText(tip);
+        });
     }
 
     private void cleanAnswerText()

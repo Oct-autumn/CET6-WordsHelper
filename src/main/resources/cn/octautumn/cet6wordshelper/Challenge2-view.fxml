@@ -79,7 +79,7 @@
             <Insets left="25.0" right="25.0" top="20.0" />
          </padding>
       </GridPane>
-      <Button fx:id="ExitButton" mnemonicParsing="false" onAction="#ExitChallenge" text="退出挑战">
+      <Button fx:id="ExitButton" mnemonicParsing="false" text="退出挑战">
          <font>
             <Font size="14.0" />
          </font>

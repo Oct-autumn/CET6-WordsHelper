@@ -16,15 +16,4 @@ public class Challenge2Controller
     public Label WordTipLabel;
     public TextField Answer;
     public Button ExitButton;
-
-    public void ExitChallenge(ActionEvent actionEvent)
-    {
-        try
-        {
-            MainApplication.mainWindowController.backToMainScene();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 }

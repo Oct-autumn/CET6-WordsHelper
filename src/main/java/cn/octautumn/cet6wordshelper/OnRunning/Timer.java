@@ -26,7 +26,7 @@ public class Timer implements Runnable
         int countTime = totalTime;
 
         //初始化倒计时栏
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             timerBar.setProgress(1.0);
             timerLabel.setText("剩余时间：" + String.format("%03ds", totalTime));
         });
@@ -45,10 +45,10 @@ public class Timer implements Runnable
             }
 
             countTime--;
-            double tmp_cal = (double)countTime / totalTime;
+            double tmp_cal = (double) countTime / totalTime;
 
             int finalCountTime = countTime;
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 timerBar.setProgress(tmp_cal);
                 timerLabel.setText("剩余时间：" + String.format("%03ds", finalCountTime));
             });
@@ -57,8 +57,11 @@ public class Timer implements Runnable
 
         synchronized (func)
         {
-            func.RunningStatus = 2;
-            func.notify();
+            if (func.RunningStatus != 3 && func.RunningStatus != 4)
+            {
+                func.RunningStatus = 2;
+                func.notify();
+            }
         }
     }
 }

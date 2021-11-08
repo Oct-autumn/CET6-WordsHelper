@@ -10,8 +10,6 @@ public class StageController
 {
     Stage thisStage;
     String mainSceneName;
-    Scene prevScene;
-    Scene nowScene = null;
     HashMap<String, SceneShowingController> Scenes = new HashMap<>();
 
     public StageController(Stage thisStage) throws IOException

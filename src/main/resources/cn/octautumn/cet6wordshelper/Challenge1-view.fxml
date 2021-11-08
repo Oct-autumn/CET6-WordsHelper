@@ -81,7 +81,7 @@
             <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="Ans1" mnemonicParsing="false" onAction="#DebugAct" prefWidth="400.0" text="选项A">
+            <Button fx:id="Ans1" mnemonicParsing="false" prefWidth="400.0" text="选项A">
                <font>
                   <Font size="18.0" />
                </font>

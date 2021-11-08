@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -113,7 +114,7 @@ public class HelloScene extends SceneShowingController
             WordListJson = DictOperation.readAndVerifyDictJson(inputJsonStream);
         }
 
-        DictOperation.ConstructDictionary(WordListJson);
+        DictOperation.ConstructDictionary(WordListJson, (ProgressBar) getThisScene().lookup("ProgressBar"));
         inputJsonStream.close();
 
         thisStage.close();

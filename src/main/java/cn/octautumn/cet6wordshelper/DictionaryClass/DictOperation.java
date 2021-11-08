@@ -2,6 +2,8 @@ package cn.octautumn.cet6wordshelper.DictionaryClass;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.application.Platform;
+import javafx.scene.control.ProgressBar;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +13,7 @@ import static cn.octautumn.cet6wordshelper.MainApplication.mainDict;
 
 public class DictOperation
 {
-    public static void ConstructDictionary(JsonNode input)
+    public static void ConstructDictionary(JsonNode input, ProgressBar progressBar)
     {
         //构造词库数据结构
         int wordSum = input.get("count").asInt();

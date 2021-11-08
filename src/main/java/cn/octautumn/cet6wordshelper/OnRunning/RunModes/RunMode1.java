@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -89,10 +90,11 @@ public class RunMode1 extends RunMode
                 isIn[wordId] = true;
                 int chTransId = getRandom(0, selWord.get(wordId).getChS().size() - 1);
                 ChTrans chTrans = selWord.get(wordId).getChS().get(chTransId);
-                int meanId = getRandom(0,chTrans.getMean().size() - 1);
+                int meanId = getRandom(0, chTrans.getMean().size() - 1);
                 String mean = chTrans.getMean().get(meanId);
                 if (randID == 0)
                 {
+                    System.out.println(buttonID);
                     correctMeaning = chTrans.getPos() + ". " + mean;
                     Platform.runLater(new SetAnswerRunnable(buttonID, this, chTrans.getPos() + ". " + mean, isCorrect, true));
                 }
@@ -103,7 +105,7 @@ public class RunMode1 extends RunMode
 
                 buttonID++;
             }
-            Platform.runLater(()-> Ans.get(0).requestFocus());
+            Platform.runLater(() -> Ans.get(0).requestFocus());
 
             RunningStatus = 1;
             synchronized (this)
@@ -125,13 +127,13 @@ public class RunMode1 extends RunMode
                 setTipLabelText("");
                 cleanAllSelection();
                 setDisableAllSelection(true);
-                Platform.runLater(()-> ExitButton.requestFocus());
+                Platform.runLater(() -> ExitButton.requestFocus());
                 return;
             }
 
             if (isCorrect.get())
             {//如果回答正确
-                setTipLabelText("恭喜你，回答正确. 你已答对" + (wordCount - errorCount + 1) + "题 ");
+                setTipLabelText("恭喜你，回答正确. 你已答对" + (wordCount - errorCount + 1) + "题 ", Color.FORESTGREEN);
                 switch (MainApplication.mainDict.getData().get(selWordId).getFamiliar())
                 {
                     case haveNotAppeared -> MainApplication.mainDict.getData().get(selWordId).setFamiliar(Familiar.passInMode1);
@@ -142,7 +144,10 @@ public class RunMode1 extends RunMode
                 try
                 {
                     cleanAllSelection();
-                    Thread.sleep(1000);
+                    synchronized (this)
+                    {
+                        wait(1000);
+                    }
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();
@@ -152,7 +157,7 @@ public class RunMode1 extends RunMode
             {//如果回答错误
                 errorCount++;
                 setTipLabelText("对不起，回答错误. 你已答错" + errorCount + "题 \n" +
-                                "正确答案是：" + correctMeaning + " ");
+                        "正确答案是：" + correctMeaning + " ", Color.INDIANRED);
                 switch (MainApplication.mainDict.getData().get(selWordId).getFamiliar())
                 {
                     case haveNotAppeared, passInMode1, N_passInMode1 -> MainApplication.mainDict.getData().get(selWordId).setFamiliar(Familiar.notFamiliar);
@@ -166,14 +171,20 @@ public class RunMode1 extends RunMode
                         RunningStatus = 3;
                         cleanAllSelection();
                         setDisableAllSelection(true);
-                        Thread.sleep(5000);
+                        synchronized (this)
+                        {
+                            wait(5000);
+                        }
                         setWordLabelText("错误太多啦! 再接再厉吧.");
                         setTipLabelText("");
-                        Platform.runLater(()-> ExitButton.requestFocus());
+                        Platform.runLater(() -> ExitButton.requestFocus());
                         return;
                     }
                     cleanAllSelection();
-                    Thread.sleep(5000);
+                    synchronized (this)
+                    {
+                        wait(5000);
+                    }
                 } catch (InterruptedException e)
                 {
                     e.printStackTrace();
@@ -194,9 +205,20 @@ public class RunMode1 extends RunMode
         Platform.runLater(() -> WordLabel.setText(word));
     }
 
+    private void setTipLabelText(String tip, Color color)
+    {
+        Platform.runLater(() -> {
+            TipLabel.setTextFill(color);
+            TipLabel.setText(tip);
+        });
+    }
+
     private void setTipLabelText(String tip)
     {
-        Platform.runLater(() -> TipLabel.setText(tip));
+        Platform.runLater(() -> {
+            TipLabel.setTextFill(Color.BLACK);
+            TipLabel.setText(tip);
+        });
     }
 
     private void setDisableAllSelection(Boolean disabled)
