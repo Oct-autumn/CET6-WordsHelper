@@ -9,11 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 
+import static cn.octautumn.cet6wordshelper.MainApplication.familiarWord;
 import static cn.octautumn.cet6wordshelper.MainApplication.mainDict;
 
 public class DictOperation
 {
-    public static void ConstructDictionary(JsonNode input, ProgressBar progressBar)
+    public static void ConstructDictionary(JsonNode input)
     {
         //构造词库数据结构
         int wordSum = input.get("count").asInt();
@@ -28,6 +29,9 @@ public class DictOperation
 
             newEntry.setFamiliar(Familiar.valueOf(NowEntry.get("familiar").asText("haveNotAppeared")))
                     .setEnS(NowEntry.get("enS").asText());
+
+            if (newEntry.getFamiliar().equals(Familiar.familiar))
+                familiarWord++;
 
             for (JsonNode NowChTrans : NowEntry.get("chS"))
             {

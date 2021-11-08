@@ -12,6 +12,7 @@ public class MainApplication extends Application
     public static final String fileSeparator = System.getProperty("file.separator");
     public static final String WorkingDir = System.getProperty("user.dir");
     public static final Dictionary mainDict = new Dictionary();
+    public static int familiarWord = 0;
 
     public static StageController mainWindowController;
 

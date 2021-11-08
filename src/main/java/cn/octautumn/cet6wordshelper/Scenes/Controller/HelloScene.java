@@ -114,7 +114,7 @@ public class HelloScene extends SceneShowingController
             WordListJson = DictOperation.readAndVerifyDictJson(inputJsonStream);
         }
 
-        DictOperation.ConstructDictionary(WordListJson, (ProgressBar) getThisScene().lookup("ProgressBar"));
+        DictOperation.ConstructDictionary(WordListJson);
         inputJsonStream.close();
 
         thisStage.close();

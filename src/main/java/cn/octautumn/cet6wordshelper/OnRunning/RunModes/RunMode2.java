@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RunMode2 extends RunMode
@@ -51,9 +52,11 @@ public class RunMode2 extends RunMode
         AtomicBoolean isCorrect = new AtomicBoolean(false);
         int errorCount = 0;
         int wordSum = MainApplication.mainDict.getCount();
+        int testCount = Math.min(wordSum - MainApplication.familiarWord, 20);
         int selWordId;
 
-        for (int wordCount = 0; wordCount < 20; wordCount++)
+        List<DictEntry> testedWord = new ArrayList<>();
+        for (int wordCount = 0; wordCount < testCount; wordCount++)
         {
             int randID;
             DictEntry correctAnswer;
@@ -61,7 +64,8 @@ public class RunMode2 extends RunMode
             {
                 randID = (int) (Math.random() * (wordSum));
                 correctAnswer = MainApplication.mainDict.getData().get(randID);
-            } while (correctAnswer.getFamiliar().equals(Familiar.familiar));
+            } while (correctAnswer.getFamiliar().equals(Familiar.familiar) || testedWord.contains(correctAnswer));
+            testedWord.add(correctAnswer);
             selWordId = randID;
 
             String correctSpell = correctAnswer.getEnS();
@@ -196,7 +200,7 @@ public class RunMode2 extends RunMode
             }
         }
         RunningStatus = 4;
-        setWordLabelText("太棒了，你一共答对了" + (20 - errorCount) + "题 ");
+        setWordLabelText("太棒了，你一共答对了" + (testCount - errorCount) + "题 ");
         cleanAnswerTextAndDisable();
         setWordTipLabelText("");
         setTipLabelText("");

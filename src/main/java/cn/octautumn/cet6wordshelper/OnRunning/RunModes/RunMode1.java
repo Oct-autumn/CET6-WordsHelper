@@ -5,6 +5,7 @@ import cn.octautumn.cet6wordshelper.DictionaryClass.DictEntry;
 import cn.octautumn.cet6wordshelper.DictionaryClass.Familiar;
 import cn.octautumn.cet6wordshelper.MainApplication;
 import cn.octautumn.cet6wordshelper.OnRunning.RunMode;
+import cn.octautumn.cet6wordshelper.OnRunning.RunReview;
 import cn.octautumn.cet6wordshelper.OnRunning.Timer;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RunMode1 extends RunMode
@@ -49,31 +51,34 @@ public class RunMode1 extends RunMode
         AtomicBoolean isCorrect = new AtomicBoolean(false);
         int errorCount = 0;
         int wordSum = MainApplication.mainDict.getCount();
+        int testCount = Math.min(wordSum - MainApplication.familiarWord, 20);
+
         int selWordId = -1;
         String correctMeaning = "";
 
-        for (int wordCount = 0; wordCount < 20; wordCount++)
+        List<DictEntry> testedWord = new ArrayList<>();
+        for (int wordCount = 0; wordCount < testCount; wordCount++)
         {
-
             int randID;
             ArrayList<DictEntry> selWord = new ArrayList<>();
+
+            selWordId = getRandom(0, wordSum);
+            while (selWord.isEmpty())
+            {
+                if (!MainApplication.mainDict.getData().get(selWordId).getFamiliar().equals(Familiar.familiar)
+                        && !testedWord.contains(MainApplication.mainDict.getData().get(selWordId)))
+                {
+                    testedWord.add(MainApplication.mainDict.getData().get(selWordId));
+                    selWord.add(MainApplication.mainDict.getData().get(selWordId));
+                    setWordLabelText(MainApplication.mainDict.getData().get(selWordId).getEnS());
+                }
+            }
+
             while (selWord.size() < 4)
             {
                 randID = getRandom(0, wordSum);
-                if (!MainApplication.mainDict.getData().get(randID).getFamiliar().equals(Familiar.familiar)
-                        && !selWord.contains(MainApplication.mainDict.getData().get(randID)))
-                {
-                    if (selWord.isEmpty())
-                    {
-                        selWordId = randID;
-                        selWord.add(MainApplication.mainDict.getData().get(randID));
-                        setWordLabelText(MainApplication.mainDict.getData().get(randID).getEnS());
-                    }
-                    else
-                    {
-                        selWord.add(MainApplication.mainDict.getData().get(randID));
-                    }
-                }
+                if (!selWord.contains(MainApplication.mainDict.getData().get(randID)))
+                    selWord.add(MainApplication.mainDict.getData().get(randID));
             }
 
             setTipLabelText("请在下列选项中选出与该单词对应的译义： ");
@@ -193,7 +198,7 @@ public class RunMode1 extends RunMode
         }
 
         RunningStatus = 4;
-        setWordLabelText("太棒了，你一共答对了" + (20 - errorCount) + "题 ");
+        setWordLabelText("太棒了，你一共答对了" + (testCount - errorCount) + "题 ");
         setTipLabelText("");
         cleanAllSelection();
         setDisableAllSelection(true);
