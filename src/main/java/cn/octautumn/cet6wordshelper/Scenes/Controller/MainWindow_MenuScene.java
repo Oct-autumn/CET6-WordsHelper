@@ -82,7 +82,7 @@ public class MainWindow_MenuScene extends SceneShowingController
                     switch (it.getFamiliar())
                     {
                         case familiar -> outputWriter_Familiar.write("WordID-" + i + "  " + it.getEnS() + '\n');
-                        case notFamiliar, passInMode1, passInMode2 -> {
+                        case notFamiliar, N_passInMode1 , N_passInMode2 -> {
                             StringBuilder strBuilder = new StringBuilder();
                             strBuilder.append(it.getEnS());
                             for (ChTrans itChT : it.getChS())
